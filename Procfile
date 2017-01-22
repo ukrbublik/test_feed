@@ -1,2 +1,2 @@
-worker: php -f bin/ratchet.php
+web: php -f bin/ratchet.php
 
