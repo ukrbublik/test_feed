@@ -106,11 +106,13 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
             ]));
           }
         }
-        if (count($connectedServices)) {
-          $conn->send(json_encode([
-            'type' => 'online',
-            'val' => $source->isOnline(),
-          ]));
+
+        foreach ($this->sources[$sessId] as $serviceType => $source) {
+          if (in_arary($serviceType, $connectedServices))
+            $conn->send(json_encode([
+              'type' => 'online',
+              'val' => $source->isOnline(),
+            ]));
         }
       }
 
