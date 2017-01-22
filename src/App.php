@@ -28,10 +28,6 @@ class App {
 
     //http://platesphp.com/
     $this->templates = new PlatesEngine($this->config['rootPath'] . '/tpl');
-
-
-    if (getenv('IS_HEROKU'))
-      ini_set('session.cookie_domain', '.herokuapp.com');
   }
 
   public function __destruct() {

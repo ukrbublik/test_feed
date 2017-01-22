@@ -1,5 +1,7 @@
 <?php
 namespace Ukrbublik\TestFeed;
+if (getenv('IS_HEROKU'))
+  ini_set('session.cookie_domain', '.herokuapp.com');
 require_once __DIR__ . "/../vendor/autoload.php";
 
 error_reporting(E_ALL);
