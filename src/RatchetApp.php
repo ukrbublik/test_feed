@@ -230,13 +230,13 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
    * @param Ratchet\ConnectionInterface $conn
    * @param string $msg
    */
-  public function onMessage(Conn $from, $msg) 
+  public function onMessage(Conn $conn, $msg) 
   {
     $msg = json_decode($msg, true);
     $sessId = $conn->Session ? $conn->Session->getId() : null;
     if ($sessId) {
       if ($msg->type == "update_stream_sources") {
-        $this->updateStreamSources($from);
+        $this->updateStreamSources($conn);
       }
     } else {
       if ($msg->type == "set_session") {
