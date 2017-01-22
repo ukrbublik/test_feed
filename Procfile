@@ -1,3 +1,3 @@
-web: php -S 0.0.0.0:$PORT
-web: php -f bin/ratchet.php
+web.1: php -S 0.0.0.0:$PORT
+web.2: php -f bin/ratchet.php
 
