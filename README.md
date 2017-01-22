@@ -7,5 +7,5 @@ Test task. Web app to show last 25 tweets in real-time.
 
 ### Heroku:
 - Add MemCachier addon
-- heroku ps:scale worker=1 --app <HEROKU_APP>
+- heroku ps:scale web=2 --app <HEROKU_APP>  ???
 
