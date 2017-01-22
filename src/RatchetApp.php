@@ -83,6 +83,13 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
 
       echo "[Ratchet] ({$conn->resourceId}) Connected\n";
 
+      $connectedServices = [];
+      foreach ($this->config['enabledServices'] as $type) {
+        $hasToken = $this->sourcesFactory->canCreateServiceStreamSource($type, $conn->Session);
+        if ($hasToken)
+          $connectedServices[] = $type;
+      }
+
       $this->updateStreamSources($conn);
 
       if (isset($this->messages[$sessId])) {
@@ -91,19 +98,19 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
         $ids = array_reverse($ids);
         foreach ($ids as $id) {
           $msg = $this->messages[$sessId][$id];
-          $conn->send(json_encode([
-            'type' => 'push',
-            'data' => $msg,
-            'id' => $id.'',
-          ]));
-        }
-        foreach ($this->sources[$sessId] as $type => $source) {
-          $hasToken = $this->sourcesFactory->canCreateServiceStreamSource($type, $conn->Session);
-          if ($hasToken)
+          if (in_arary($msg['__serviceType'], $connectedServices)) {
             $conn->send(json_encode([
-              'type' => 'online',
-              'val' => $source->isOnline(),
+              'type' => 'push',
+              'data' => $msg,
+              'id' => $id.'',
             ]));
+          }
+        }
+        if (count($connectedServices)) {
+          $conn->send(json_encode([
+            'type' => 'online',
+            'val' => $source->isOnline(),
+          ]));
         }
       }
 
@@ -174,6 +181,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
                 //it's tweet
                 $ts = strtotime($msg['created_at']);
                 $msg['created_at_ts'] = $ts;
+                $msg['__serviceType'] = $type;
                 $id = $msg['id_str'].'';
                 $isUpdate = isset($this->messages[$sessId][$id]);
                 $this->messages[$sessId][$id] = $msg;
