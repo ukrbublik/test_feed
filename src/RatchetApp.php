@@ -240,7 +240,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
       }
     } else {
       if ($msg->type == "set_session") {
-        echo $msg->sid . "\n"; //todo
+        echo "[Ratchet] ({$conn->resourceId}) Session id: {$msg->sid}\n";
         $conn->WebSocket->request->setCookie(ini_get('session.name'), $msg->sid);
         $this->onOpen($conn);
       }
