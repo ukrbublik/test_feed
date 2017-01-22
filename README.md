@@ -10,3 +10,4 @@ Test task. Web app to show last 25 tweets in real-time.
 - Separate Ratchet socket server to 2nd app. 
 - Add file 'Procfile' with contents `web: php -f bin/ratchet.php` to 2nd app
 - Both apps must have same MEMCACHIER_* env vars and IS_HEROKU=1
+

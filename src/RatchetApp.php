@@ -169,7 +169,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
               ]));
             });
 
-            $source->on('msg', function($msg) use ($sessId, &$source) {
+            $source->on('msg', function($msg) use ($sessId, &$source, $type) {
               if(isset($msg['delete'])) {
                 $id = $msg['delete']['status']['id_str'].'';
                 if (isset($this->messages[$sessId][$id])) {
