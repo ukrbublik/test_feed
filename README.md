@@ -5,3 +5,7 @@ Test task. Web app to show last 25 tweets in real-time.
 - Edit config.php
 - Run socket server from command line: ` php bin/ratchet.php `
 
+### Heroku:
+- Add MemCachier addon
+- heroku ps:scale worker=1 --app <HEROKU_APP>
+

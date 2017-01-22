@@ -17,7 +17,7 @@ $config = [
     'servers' => getenv("MEMCACHIER_SERVERS") ? getenv("MEMCACHIER_SERVERS") : 'localhost:11211',
   ],
   'ratchet' => [
-    'port' => getenv('PORT') ? getenv('PORT') : 5000,
+    'port' => getenv('RATCHET_PORT') ? getenv('RATCHET_PORT') : 5000,
   ],
   'topMessagesCount' => 25,
   'enabledServices' => ['twitter'],
