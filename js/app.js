@@ -11,7 +11,7 @@ $( document ).ready(function() {
 
   setInterval(function() {
     updateHumanTimes();
-  }, 5*1000);
+  }, 20*1000);
 });
 
 function ratchet_connect() {
