@@ -24,6 +24,7 @@ if ($action == 'logout') {
   }
   $redirectUrl = $app->config['rootUrl'];
   header("Location: " . $redirectUrl);
+  exit();
 } else if ($action == 'login') {
   switch ($serviceType) {
     case 'twitter':
@@ -69,6 +70,7 @@ if ($action == 'logout') {
           'oauth_token' => $res['oauth_token'],
         ]);
         header("Location: " . $redirectUrl);
+        exit();
       }
       break;
     default:

@@ -6,6 +6,7 @@ use Ratchet\ConnectionInterface;
 use Ratchet\ConnectionInterface as Conn;
 use React\EventLoop\LoopInterface;
 use Ratchet\Session\Session;
+use Ratchet\Session\SessionProvider;
 
 class RatchetApp implements MessageComponentInterface, WampServerInterface 
 {
@@ -23,6 +24,8 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
   protected $sourcesFactory;
   /*** @var array to hold last times of sending socket messages */
   protected $lastSendTimes;
+  /*** @var SessionProvider */
+  protected $sessionProvider = null;
 
   /**
    * @param LoopInterface $loop
@@ -53,6 +56,16 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
         }
       }
     });
+  }
+
+  /**
+   * In normal situations we don't need session provider. 
+   * But if Ratchet app is separated from regular app, we need to pass sessionid in special
+   *  message and apply hook to session provider to set Session object
+   * @param SessionProvider $sp
+   */
+  public function setSessionProvider(SessionProvider $sp) {
+    $this->sessionProvider = $sp;
   }
 
   /**
@@ -242,6 +255,8 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
       if ($msg->type == "set_session") {
         echo "[Ratchet] ({$conn->resourceId}) Session id: {$msg->sid}\n";
         $conn->WebSocket->request->addCookie(ini_get('session.name'), $msg->sid);
+        if ($this->sessionProvider)
+          $this->sessionProvider->onOpen($conn);
         $this->onOpen($conn);
       }
     }

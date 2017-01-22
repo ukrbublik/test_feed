@@ -21,11 +21,12 @@ $app = new App();
 $loop = LoopFactory::create();
 
 $rapp = new RatchetApp($loop, $app->config);
-$rapp = new SessionProvider(
+$srapp = new SessionProvider(
   $rapp,
   new MemcachedSessionHandler($app->memcached)
 );
-$component = new HttpServer(new WsServer($rapp));
+$rapp->setSessionProvider($srapp);
+$component = new HttpServer(new WsServer($srapp));
 $socket = new Reactor($loop);
 $socket->listen($app->config['ratchet']['listenPort'], '0.0.0.0');
 echo "Listening on " . $app->config['ratchet']['listenPort'] . "...\n";
