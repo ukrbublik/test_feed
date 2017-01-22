@@ -16,7 +16,7 @@ $( document ).ready(function() {
 
 function ratchet_connect() {
   console.log("[Ratchet] Connecting...");
-  var conn = new WebSocket('ws://'+location.hostname+':'+app.ratchet.port+'/');
+  var conn = new WebSocket('ws://'+app.ratchet.host+':'+app.ratchet.port+'/');
 
   conn.onopen = function(e) {
     console.log("[Ratchet] Connected", e);

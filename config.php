@@ -17,7 +17,9 @@ $config = [
     'servers' => getenv("MEMCACHIER_SERVERS") ? getenv("MEMCACHIER_SERVERS") : 'localhost:11211',
   ],
   'ratchet' => [
-    'port' => getenv('PORT') ? getenv('PORT') : 5000,
+    'port' => getenv('IS_HEROKU') ? 80 : 5000,
+    'host' => getenv('IS_HEROKU') ? 'stream-feed-sock.herokuapp.com' : '',
+    'listenPort' => getenv('PORT') ? getenv('PORT') : 5000,
   ],
   'topMessagesCount' => 25,
   'enabledServices' => ['twitter'],
