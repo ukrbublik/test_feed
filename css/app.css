@@ -16,3 +16,39 @@ body {
 .list-group {
   margin-top: 20px;
 }
+
+.stream-item-header .avatar {
+  float: left;
+  margin-top: 3px;
+  margin-left: 0px;
+  margin-right: 10px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 5px;
+}
+
+.fullname {
+  font-weight: bold;
+  color: #292f33;
+  margin-right: 5px;
+}
+
+.username {
+  direction: ltr;
+  unicode-bidi: embed;
+  font-size: 13px;
+  color: #8899a6;
+}
+
+.time {
+  color: #8899a6;
+  font-size: 13px;
+}
+.time:before {
+  content: "\00b7";
+  margin-left: 4px;
+  margin-right: 4px;
+}

@@ -53,6 +53,7 @@
   <script src="js/jquery.js"></script>
   <script src="js/jquery.cookie.js"></script>
   <script src="css/bootstrap/js/bootstrap.js"></script>
+  <script src="js/twitter-text-1.9.4.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

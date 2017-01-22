@@ -38,7 +38,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
     $this->messages = [];
     $this->lastSendTimes = [];
 
-    //Don't let connections to fall asleep if thre no data for a long time 
+    //Don't let connections to fall asleep if there are no data for a long time 
     // (especially for Heroku)
     $loop->addPeriodicTimer(30, function() {
       $time = time();
@@ -147,12 +147,8 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
               ]));
             });
 
-            $source->on('msg', function($msg) use ($sessId) {
-              if (isset($msg['friends'])) {
-                //ignore for now
-              } else if (isset($msg['event'])) {
-                //ignore for now
-              } else if(isset($msg['delete'])) {
+            $source->on('msg', function($msg) use ($sessId, &$source) {
+              if(isset($msg['delete'])) {
                 $id = $msg['delete']['status']['id_str'].'';
                 if (isset($this->messages[$sessId][$id])) {
                   unset($this->messages[$sessId][$id]);
@@ -192,6 +188,12 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
                     'after_id' => $after_id,
                   ]));
                 }
+              } else {
+                //todo: if follow/unfollow, need to refresh feed? (Twitter doen't do this)
+                $this->sendToSessionConnections($sessId, json_encode([
+                  'type' => 'other',
+                  'data' => $msg,
+                ]));
               }
             });
 
