@@ -31,5 +31,7 @@ $socket->listen($app->config['ratchet']['port'], '0.0.0.0');
 echo "Listening on " . $app->config['ratchet']['port'] . "...\n";
 $server = new IoServer($component, $socket, $loop);
 
+print_r($_SERVER);
+
 $loop->run();
 ?>
