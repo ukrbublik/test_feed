@@ -20,6 +20,10 @@ function ratchet_connect() {
 
   conn.onopen = function(e) {
     console.log("[Ratchet] Connected", e);
+    if (app.ratchet.isSeparated) {
+      var sid = $.cookie(app.sessionName);
+      conn.send(JSON.stringify({type: "set_session", sid: sid}));
+    }
   };
 
   conn.onclose = function(e) {

@@ -20,6 +20,8 @@ $config = [
     'port' => getenv('IS_HEROKU') ? 80 : 5000,
     'host' => getenv('IS_HEROKU') ? 'stream-feed-sock.herokuapp.com' : '',
     'listenPort' => getenv('PORT') ? getenv('PORT') : 5000,
+    //for Heroku 2 apps, Ratchet sock server is separate app
+    'isSeparated' => getenv('IS_HEROKU'),
   ],
   'topMessagesCount' => 25,
   'enabledServices' => ['twitter'],

@@ -94,7 +94,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
 
       $this->updateStreamSources($conn);
 
-    } else {
+    } else if(!$this->config['ratchet']['isSeparated']) {
       echo "[Ratchet] Can't connect without session ({$conn->resourceId})\n";
       $conn->close();
     }
@@ -232,10 +232,17 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
    */
   public function onMessage(Conn $from, $msg) 
   {
+    $msg = json_decode($msg, true);
     $sessId = $conn->Session ? $conn->Session->getId() : null;
     if ($sessId) {
-      if ($msg == "update_stream_sources") {
+      if ($msg->type == "update_stream_sources") {
         $this->updateStreamSources($from);
+      }
+    } else {
+      if ($msg->type == "set_session") {
+        echo $msg->sid . "\n"; //todo
+        $conn->WebSocket->request->setCookie(ini_get('session.name'), $msg->sid);
+        $this->onOpen($conn);
       }
     }
   }
