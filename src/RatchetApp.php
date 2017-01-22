@@ -98,7 +98,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
         $ids = array_reverse($ids);
         foreach ($ids as $id) {
           $msg = $this->messages[$sessId][$id];
-          if (in_arary($msg['__serviceType'], $connectedServices)) {
+          if (in_array($msg['__serviceType'], $connectedServices)) {
             $conn->send(json_encode([
               'type' => 'push',
               'data' => $msg,
@@ -108,7 +108,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
         }
 
         foreach ($this->sources[$sessId] as $serviceType => $source) {
-          if (in_arary($serviceType, $connectedServices))
+          if (in_array($serviceType, $connectedServices))
             $conn->send(json_encode([
               'type' => 'online',
               'val' => $source->isOnline(),
