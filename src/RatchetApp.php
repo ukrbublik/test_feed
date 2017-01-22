@@ -83,6 +83,8 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
 
       echo "[Ratchet] ({$conn->resourceId}) Connected\n";
 
+      $this->updateStreamSources($conn);
+
       if (isset($this->messages[$sessId])) {
         //User opened 2 tabs in browser
         $ids = array_keys($this->messages[$sessId]);
@@ -104,8 +106,6 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
             ]));
         }
       }
-
-      $this->updateStreamSources($conn);
 
     } else if(!$this->config['ratchet']['isSeparated']) {
       echo "[Ratchet] Can't connect without session ({$conn->resourceId})\n";
