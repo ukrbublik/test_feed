@@ -1,2 +1,2 @@
-worker: heroku run php bin/ratchet.php
+worker: php -f bin/ratchet.php
 
