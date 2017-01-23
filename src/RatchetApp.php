@@ -78,7 +78,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
       if (!isset($this->clients[$sessId]))
         $this->clients[$sessId] = [];
       $this->clients[$sessId][] = $conn;
-      if (!isset($this->lastSendTimes[$sessId]))
+      if (!isset($this->lastSendTimes[$conn->resourceId]))
         $this->lastSendTimes[$conn->resourceId] = time();
 
       echo "[Ratchet] ({$conn->resourceId}) Connected\n";
