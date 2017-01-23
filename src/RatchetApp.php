@@ -10,6 +10,8 @@ use Ratchet\Session\SessionProvider;
 
 class RatchetApp implements MessageComponentInterface, WampServerInterface 
 {
+  const ANTI_IDLE_TIME = 20;
+
   /*** @var array app config */
   protected $config;
   /*** @var LoopInterface */
@@ -48,7 +50,7 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
       foreach ($this->clients as $sessId => $conns) {
         foreach ($conns as $conn) {
           if (isset($this->lastSendTimes[$conn->resourceId]) 
-           && ($time - $this->lastSendTimes[$conn->resourceId]) > 30) {
+           && ($time - $this->lastSendTimes[$conn->resourceId]) > self::ANTI_IDLE_TIME) {
             $conn->send(json_encode([
               'type' => 'hello',
             ]));
@@ -95,6 +97,10 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
 
       if (isset($this->messages[$sessId])) {
         //User opened 2 tabs in browser
+        $conn->send(json_encode([
+          'type' => 'clear_msgs',
+        ]));
+
         $ids = array_keys($this->messages[$sessId]);
         $ids = array_reverse($ids);
         foreach ($ids as $id) {

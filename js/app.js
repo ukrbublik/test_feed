@@ -15,8 +15,11 @@ $( document ).ready(function() {
 });
 
 function ratchet_connect() {
-  console.log("[Ratchet] Connecting...");
-  var conn = new WebSocket('ws://'+(app.ratchet.host != '' ? app.ratchet.host : location.hostname)+':'+app.ratchet.port+'/');
+  var connStr = (app.ratchet.isSecure ? 'wss' : 'ws') + '://' 
+    + (app.ratchet.host != '' ? app.ratchet.host : location.hostname) 
+    + (app.ratchet.port ? ':' + app.ratchet.port : '') + '/';
+  console.log("[Ratchet] Connecting to " + connStr + " ...");
+  var conn = new WebSocket(connStr);
 
   conn.onopen = function(e) {
     console.log("[Ratchet] Connected", e);
