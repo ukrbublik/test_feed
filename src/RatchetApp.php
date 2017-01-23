@@ -47,7 +47,8 @@ class RatchetApp implements MessageComponentInterface, WampServerInterface
       $time = time();
       foreach ($this->clients as $sessId => $conns) {
         foreach ($conns as $conn) {
-          if (($time - $this->lastSendTimes[$conn->resourceId]) > 30) {
+          if (isset($this->lastSendTimes[$conn->resourceId]) 
+           && ($time - $this->lastSendTimes[$conn->resourceId]) > 30) {
             $conn->send(json_encode([
               'type' => 'hello',
             ]));
