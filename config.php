@@ -1,9 +1,8 @@
 <?php
 
-print_r($_SERVER); //test heroku
-
 $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
- || $_SERVER['SERVER_PORT'] == 443;
+ || $_SERVER['SERVER_PORT'] == 443 
+ || getenv('IS_HEROKU') && $_SERVER['HTTP_X_FORWARDED_PORT'] == 443;
 $rootUrl = isset($_SERVER['HTTP_HOST']) ? ($isSecure ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] : null;
 $rootPath = __DIR__;
 
