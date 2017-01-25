@@ -1,4 +1,4 @@
-Test task. Web app to show last 25 tweets in real-time.
+Test web app to show last 25 tweets in real-time.
 
 ### Usage
 - `composer install`
@@ -12,5 +12,5 @@ Test task. Web app to show last 25 tweets in real-time.
 - Both apps must have same MEMCACHIER_* env vars and IS_HEROKU=1
 
 ### Demo
-http://stream-feed.herokuapp.com/
+https://stream-feed.herokuapp.com/
 
