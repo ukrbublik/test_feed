@@ -6,8 +6,8 @@
   <title>Test Feed</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="ven/twbs/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="ven/twbs/bootstrap/dist/css/bootstrap-theme.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -52,7 +52,7 @@
   <!-- Load js -->
   <script src="components/jquery/jquery.js"></script>
   <script src="components/jquery-cookie/jquery.cookie.js"></script>
-  <script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="ven/twbs/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/twitter-text-js/js/twitter-text.js"></script>
   <script src="js/app.js"></script>
 </body>
