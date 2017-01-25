@@ -37,6 +37,9 @@
         "classmap": ["src"]
     },
     "scripts": {
+        "pre-install-cmd": [
+            "npm install -g bower"
+        ],
         "compile": [
             "bower install"
         ],
