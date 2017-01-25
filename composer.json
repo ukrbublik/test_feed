@@ -37,9 +37,11 @@
         "classmap": ["src"]
     },
     "scripts": {
-        "post-install-cmd": [
-            "ln -s vendor ven",
+        "compile": [
             "bower install"
+        ],
+        "post-install-cmd": [
+            "ln -s vendor ven"
         ]
     }
 }
