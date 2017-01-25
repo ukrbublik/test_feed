@@ -1,6 +1,6 @@
 {
     "name": "ukrbublik/test_feed",
-    "description": "test task",
+    "description": "Web app to show last 25 tweets in real-time.",
     "type": "project",
     "require-dev": {
         "phpunit/phpunit": "^5.7"

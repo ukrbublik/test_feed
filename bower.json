@@ -1,0 +1,21 @@
+{
+  "name": "test_feed",
+  "homepage": "https://github.com/ukrbublik/test_feed",
+  "authors": [
+    "Denis Oblogin <ukrbublik@gmail.com>"
+  ],
+  "description": "Web app to show last 25 tweets in real-time.",
+  "main": "js/app.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "twitter-text-js": "^1.9.4"
+  }
+}
