@@ -38,9 +38,10 @@
         "classmap": ["src"]
     },
     "scripts": {
+	"compile": [
+	    "bower install"
+	],
         "post-install-cmd": [
-            "npm install -g bower",
-            "bower install",
             "ln -s vendor ven"
         ]
     }

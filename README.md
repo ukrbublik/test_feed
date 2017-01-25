@@ -2,7 +2,6 @@ Test web app to show last 25 tweets in real-time.
 
 ### Usage
 - `composer install`
-- `bower install`
 - Edit config.php
 - Run socket server from command line: `php bin/ratchet.php`
 
