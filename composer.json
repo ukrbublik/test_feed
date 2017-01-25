@@ -3,7 +3,8 @@
     "description": "Web app to show last 25 tweets in real-time.",
     "type": "project",
     "require-dev": {
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^5.7",
+        "heroku/heroku-buildpack-php": "*"
     },
     "license": "ISC",
     "authors": [
@@ -37,13 +38,9 @@
         "classmap": ["src"]
     },
     "scripts": {
-        "pre-install-cmd": [
-            "npm install -g bower"
-        ],
-        "compile": [
-            "bower install"
-        ],
         "post-install-cmd": [
+            "npm install -g bower",
+            "bower install",
             "ln -s vendor ven"
         ]
     }
