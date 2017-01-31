@@ -1,4 +1,4 @@
-Test web app to show last 25 tweets in real-time.
+Simple web app to show last 25 tweets from you feed in real-time.
 
 ### Usage
 - `composer install`
